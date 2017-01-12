@@ -1,0 +1,38 @@
+﻿@model GiveOnline.Models.EventViewModel
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Upcomming Events</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row eventBox">
+        @foreach (var eventItem in Model.Events)
+        {
+            <div class="col-md-4">
+                <a href="#" data-toggle="modal" data-target="#event_@eventItem.Id">
+                    <img class="eventImage img-responsive" src="@eventItem.ImageUrl" />
+                    <div bottombar>
+                        <span class="eventText">
+                            @eventItem.Title
+                        </span>
+                        <span class="eventDate">
+                            @eventItem.StartDate.ToLongDateString()
+                        </span>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@Html.Action("_EventModal")
+

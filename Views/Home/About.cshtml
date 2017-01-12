@@ -1,0 +1,53 @@
+﻿@model List<GiveOnline.Models.About>
+@{
+    ViewBag.Title = "About";
+}
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">About</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row">
+        <div class="tabbable">
+            <div class="col-md-8 col-xs-12">
+                <div class="tab-content">
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsActive)
+                        {
+                            <div class="tab-pane active" id="@item.Id"><h1 class="headline">@item.Title</h1><p class="bodytext">@item.Content</p></div>
+                        }
+                        else
+                        {
+                            <div class="tab-pane" id="@item.Id"><h1 class="headline">@item.Title</h1><p class="bodytext">@item.Content</p></div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><hr /></li>
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsActive)
+                        {
+                            <li class="active"><a href="#@item.Id" data-toggle="tab"><h4>< @item.Title</h4></a></li>
+                            <li><hr /></li>
+                        }
+                        else
+                        {
+                            <li><a href="#@item.Id" data-toggle="tab">< @item.Title</a></li>
+                            <li><hr /></li>
+                        }
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

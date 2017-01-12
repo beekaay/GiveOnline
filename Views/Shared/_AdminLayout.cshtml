@@ -1,0 +1,167 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaTags" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="nav-side-menu">
+        <div class="brand">Brand Logo</div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a href="/Admin/Index">
+                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                    </a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#category" class="collapsed">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> Category <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="category">
+                    <li><a href="/Admin/Category_Create">Add New</a></li>
+                    <li><a href="/Admin/Category_Index">Edit / Delete</a></li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#seo" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i> SEO <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="seo">
+                    <li><a href="/Admin/SEO_Index">Update</a></li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#carousel" class="collapsed">
+                    <a href="#"><i class="fa fa-picture-o fa-lg"></i> Carousel <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="carousel">
+                    <li><a href="/Admin/Carousel_Create">Add New</a></li>
+                    <li><a href="/Admin/Carousel_Index">Edit / Delete</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#events" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i> Events <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="events">
+                    <li><a href="/Admin/Event_Create">Add New</a></li>
+                    <li><a href="/Admin/Event_Edit">Edit / Delete</a></li>
+                    <li class="active"><a href="/Admin/Story_Collection">Stories</a></li>
+                    <li><a href="/Admin/Story_Create">Add New</a></li>
+                    <li><a href="/Admin/Story_Index">Edit / Delete</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#giveOnline" class="collapsed">
+                    <a href="#"><i class="fa fa-random fa-lg"></i> Give Online <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="giveOnline">
+                    <li><a href="/Admin/DonateOnline_Create">Add New</a></li>
+                    <li><a href="/Admin/DonateOnline_Edit">Edit / Delete</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#about" class="collapsed">
+                    <a href="#"><i class="fa fa-question-circle-o fa-lg"></i> About <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="about">
+                    <li><a href="/Admin/About_Create">Add New</a></li>
+                    <li><a href="/Admin/About_Edit">Edit / Delete</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#news" class="collapsed">
+                    <a href="#"><i class="fa fa-envelope-o fa-lg"></i> News Letter <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="news">
+                    <li><a href="/MailSender/News_Create">Add New</a></li>
+                    <li class="active"><a href="/Admin/NewsReceiver_Index">Emails</a></li>
+                    <li><a href="/Admin/NewsReceiver_Create">Add Email</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#product" class="collapsed">
+                    <a href="#"><i class="fa fa-shopping-basket fa-lg"></i> Product <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="product">
+                    <li><a href="/Admin/Product_Create">Add New</a></li>
+                    <li><a href="/Admin/Product_Index">Edit / Delete</a></li>
+                    <li class="active"><a href="/Admin/Variants_Index">Variants</a></li>
+                    <li><a href="/Admin/Color_Create">Add Color</a></li>
+                    <li><a href="/Admin/Size_Create">Add Size</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#menubox" class="collapsed">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> Index Menu Boxes <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="menubox">
+                    <li><a href="/Admin/MenuBox_Create">Add New</a></li>
+                    <li><a href="/Admin/MenuBox_Index">Edit / Delete</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#userroles" class="collapsed">
+                    <a href="#"><i class="fa fa-users fa-lg"></i> User Roles <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="userroles">
+                    <li><a href="/UserRoles/Index">Add Role</a></li>
+                    <li><a href="/UserRoles/GetRoles">Check if user has role</a></li>
+                </ul>
+
+                <li data-toggle="collapse" data-target="#role" class="collapsed">
+                    <a href="#"><i class="fa fa-user fa-lg"></i> Roles <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="role">
+                    <li><a href="/Role/Create">Add New</a></li>
+                    <li><a href="/Role/Index"> Delete </a></li>
+                </ul>
+
+                <li>
+                    <a href="/Home/Index"><i class="fa fa-home fa-lg"></i>Home/Index</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="body-AdminContent">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-migrate-3.0.0.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap-tagsinput.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/main.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+    $('form').bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ('@ViewBag.Message' == 'Sent') {
+            alert('Mail has been sent successfully');
+        }
+    });
+</script>
+

@@ -1,0 +1,28 @@
+﻿@model GiveOnline.Models.StoryEventViewModels
+@{
+    ViewBag.Title = "Story_Collection";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table">
+    <thead class="thead-inverse">
+        <tr>
+            <td>Id</td>
+            <td>Story from</td>
+            <td>Story</td>
+        </tr>
+    </thead>
+    @foreach (var storyItem in Model.Stories)
+    {
+        <tr>
+            <td>@storyItem.Id</td>
+            <td>@storyItem.Events.Title</td>
+            <td>@storyItem.Title</td>          
+        </tr>
+
+    }
+
+
+</table>
+
+

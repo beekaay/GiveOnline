@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Carousel_Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Admin/Carousel_Create" enctype="multipart/form-data" method="post" id="carouselCreate">
+
+    <div class="form-group">
+        <label for="title">Caption</label>
+        <input type="text" class="form-control" name="Title" id="title" required value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="title">Image</label>
+        <input type="file" class="form-control" name="imageUrl" id="imageUrl" required value="" />
+    </div>
+
+    <button type="submit">Go</button>
+</form>
+

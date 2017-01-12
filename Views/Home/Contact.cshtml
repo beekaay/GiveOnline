@@ -1,0 +1,50 @@
+﻿@model GiveOnline.Models.Contact
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Contact</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-6">
+
+            @using (@Html.BeginForm("Contact", "Home", FormMethod.Post, new { @id = "form1", @enctype = "multipart/form-data" }))
+            { @Html.ValidationSummary()
+
+                <p>Please state a subject and a related content.</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Subject:</td>
+                            <td>@Html.TextBoxFor(m => m.Subject, new { Class = "form-control", @required = "required" } )</td>
+                        </tr>
+                        <tr>
+                            <td>Content:</td>
+                            <td>@Html.TextAreaFor(m => m.Body, new { Class = "form-control", @required = "required" } )</td>
+                        </tr>
+                        <tr>
+                            <td>Attachment</td>
+                            <td><input name="fileUploader" type="file" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-primary" value="Send" />
+
+            }
+
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive" src="~/Content/Images/COLOURBOX7203494.jpg" />
+        </div>
+
+    </div>
+</div>

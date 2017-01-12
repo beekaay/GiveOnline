@@ -1,0 +1,39 @@
+﻿@model GiveOnline.Models.EventViewModel
+@{
+    ViewBag.Title = "Story";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Stories</span></h2>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container body-content">
+    <div class="row">
+
+        @foreach (var eventItem in Model.Events)
+        {
+            if (eventItem.Stories.Any())
+            {
+                <div class="col-lg-12">
+
+                    <p>Story from: @eventItem.Title</p>
+                    <p>Located in: @eventItem.Location</p>
+                 
+                    @foreach (var storyItem in eventItem.Stories)
+                    {
+                        <p>@storyItem.Title</p>
+                    }
+                </div>
+                
+            }
+        }
+    </div>
+</div>

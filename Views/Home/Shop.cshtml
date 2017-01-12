@@ -1,0 +1,63 @@
+﻿@model GiveOnline.Models.PostViewModel
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Shop</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row">
+
+        @Html.Action("_ShopNav")
+
+
+        @*<div class="col-md-3">
+            <p class="lead"></p>
+            <div class="list-group">
+                <ul>
+                    <li>@Html.ActionLink("All", "Shop", "Home")</li>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <li> @Html.ActionLink(item.Title, "Browse", new { category = item.Title }) </li>
+                    }
+                </ul>
+            </div>
+        </div>*@
+
+
+        <div class="col-md-12">
+            @foreach (var Productitem in Model.Products)
+            {
+                <div class="col-md-3">
+                    <a href="#" data-toggle="modal" data-target="#product_@Productitem.Id">
+                        @foreach (var variantItem in Productitem.Variants)
+                        {
+                            <img style="height:200px" class="eventImage img-responsive" src="@variantItem.ImageUrl" />
+                        }
+                        <div bottombar>
+                            <span class="eventText">
+                                @Productitem.Title
+                            </span>
+                            <span class="eventDate">
+                                @Productitem.Price
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                @Html.Action("_Product")
+            }
+        </div>
+    </div>
+</div>
+
+
+

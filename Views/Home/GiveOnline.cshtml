@@ -1,0 +1,41 @@
+﻿@model List<GiveOnline.Models.DonateOnline>
+@{
+    ViewBag.Title = "GiveOnline";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Give Online</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row eventBox">
+        @foreach (var donateItem in Model)
+        {
+            if (DateTime.Now < donateItem.IsActive)
+            {
+                <div class="col-md-4">
+                    <a href="#" data-toggle="modal" data-target="#@donateItem.Id">
+                        <img class="eventImage img-responsive" src="@donateItem.ImageUrl" />
+                        <div bottombar>
+                            <span class="eventText">
+                                @donateItem.Title
+                            </span>
+                            <span class="eventDate">
+                                @donateItem.Price.ToPrice()
+                                Donate
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@Html.Action("_DonateModal")

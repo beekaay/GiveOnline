@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form action="/Role/Create" method="post" id="categoryCreate">
+
+    <div class="form-group">
+        <label for="rolename">Rolename</label>
+        <input class="form-control" name="rolename" id="rolename" />
+    </div>
+
+    <div class="success">
+        <button type="submit">Go</button>
+    </div>
+
+</form>

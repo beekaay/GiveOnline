@@ -1,0 +1,31 @@
+﻿@model GiveOnline.Models.MetaViewModels
+@{
+    ViewBag.Title = "SEO_Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form action="/Admin/SEO_Edit" id="metaDescription" method="post">
+    <div class="form-group">
+        <label for="title">title</label>
+        <input class="form-control" type="text" id="title" name="title" value="@Model.MetaDescription.Title" />
+    </div>
+    <input type="hidden" name="id" value="@Model.MetaDescription.Id" />
+
+    <button class="btn btn-success" type="submit">submit</button>
+</form>
+<br />
+<br />
+
+<form action="/Admin/SEOTags_Edit" id="metaTags" role="form" method="post">
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input class="form-control" data-role="tagsinput" type="text" id="tags" name="tags" value="@Model.MetaTag.Title" />
+    </div>
+
+    <button class="btn btn-success" type="submit">submit</button>
+</form>
+
+
+
+

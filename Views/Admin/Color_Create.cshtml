@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Color_Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Admin/Color_Create" method="post" id="colorCreate">
+
+    <div class="form-group">
+        <label for="title">Color</label>
+        <input type="text" class="form-control" name="Title" id="title" required value="" />
+    </div>
+
+    <button type="submit">Go</button>
+</form>
+

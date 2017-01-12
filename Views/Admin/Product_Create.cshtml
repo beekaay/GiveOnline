@@ -1,0 +1,76 @@
+﻿@model GiveOnline.Models.AdminCreateViewModel
+
+@{
+    ViewBag.Title = "Product_Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Product_Create</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form action="/Admin/Product_Create" enctype="multipart/form-data" method="post" id="productCreate">
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="Title" id="title" required value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="content">Discription</label>
+                <textarea id="content" class="form-control" name="content" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" class="form-control" name="categoryId">
+                    @foreach (var categoryItem in Model.Categories)
+                    {
+                        <option value="@categoryItem.Id">@categoryItem.Title</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="Price" required value="" />
+            </div>
+
+            <hr />
+            <h3>Variant</h3>
+            <hr />
+
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" class="form-control" name="Stock" id="stock" required value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="imageURL">Image</label>
+                <input type="file" class="form-control" name="imageURL" id="imageURL" required value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color</label>
+                <select id="color" class="form-control" name="colorId">
+                    @foreach (var itemColor in Model.Color)
+                    {
+                        <option value="@itemColor.Id">@itemColor.Title</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="size">Size</label>
+                <select id="size" class="form-control" name="sizeId">
+                    @foreach (var itemSize in Model.Size)
+                    {
+                        <option value="@itemSize.Id">@itemSize.Title</option>
+                    }
+                </select>
+            </div>
+
+            <button type="submit">Go</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model GiveOnline.Models.Category
+@{
+    ViewBag.Title = "Browse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid body-fluid">
+    <div>
+        <img class="bannerImage" src="~/Content/Images/banner.png" />
+        <div class="bannerBox">
+            <h2 class="bannerText"><span class="spacer">Shop</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row">
+        @foreach (var Productitem in Model.Products)
+        {
+            <div class="col-md-4">
+                <a href="#" data-toggle="modal" data-target="#product_@Productitem.Id">
+                    @foreach (var variantItem in Productitem.Variants)
+                    {
+                        <img class="eventImage img-responsive" src="@variantItem.ImageUrl" />
+                    }
+                    <div bottombar>
+                        <span class="eventText">
+                            @Productitem.Title
+                        </span>
+                        <span class="eventDate">
+                            @Productitem.Price
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            @Html.Action("_Product")
+        }
+        </div>
+</div>

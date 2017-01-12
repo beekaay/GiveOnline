@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "DonateOnline_Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Admin/DonateOnline_Create" enctype="multipart/form-data" method="post" id="donateOnlineCreate">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" required value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="content">Story</label>
+        <textarea class="form-control" name="content" id="content" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="imageURL">Image</label>
+        <input type="file" class="form-control" name="imageURL" id="imageURL" required value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" name="price" id="price" required value="" />
+    </div>
+
+    <div class='input-group date form-group' id='datetimepicker1'>
+        <input type='text' class="form-control" name="isActive" placeholder="Active to " required />
+        <span class="input-group-addon">
+            <i class="fa fa-calendar fa-lg"></i>
+        </span>
+    </div>
+
+    <button type="submit">Go</button>
+</form>
+
+
+

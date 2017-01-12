@@ -1,0 +1,28 @@
+﻿@model List<GiveOnline.Models.Event>
+@{
+    ViewBag.Title = "Introduction_Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Admin/Story_Create" method="post" id="storyCreate">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" required value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="event">Event</label>
+        <select id="event" class="form-control" name="eventId">
+
+            @foreach (var eventItem in Model)
+            {
+                <option value="@eventItem.Id">@eventItem.Title</option>
+            }
+
+        </select>
+    </div>
+    <button type="submit">Go</button>
+</form>
+
+

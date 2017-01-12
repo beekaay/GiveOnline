@@ -1,0 +1,40 @@
+﻿@model GiveOnline.Models.DonateOnline
+@{
+    ViewBag.Title = "Event_Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Admin/DonateOnline_Edit" enctype="multipart/form-data" method="post" id="donateOnlineEdit">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" value="@Model.Title" />
+    </div>
+
+    <div class="form-group">
+        <label for="content">Story</label>
+        <textarea class="form-control" name="content" id="content">@Model.Content</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="imageURL">Image</label>
+        <input type="file" class="form-control" name="imageURL" id="imageURL" value="@Model.ImageUrl" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" name="price" id="price" placeholder="@Model.Price" value="@Model.Price" />
+    </div>
+
+    <div class='input-group date form-group' id='datetimepicker1'>
+        <input type='text' class="form-control" name="isActive" value="@Model.IsActive" />
+        <span class="input-group-addon">
+            <i class="fa fa-calendar fa-lg"></i>
+        </span>
+    </div>
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <button type="submit">Go</button>
+</form>
+

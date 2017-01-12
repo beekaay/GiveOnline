@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>User and Roles</h2>
+
+
+@using (Html.BeginForm("RoleAddToUser", "UserRoles", FormMethod.Post))
+{
+    <p>
+        Username: @Html.DropDownList("UserId", (IEnumerable<SelectListItem>)ViewBag.Users,
+                 "Select user...", new { @class = "form-control" })
+    </p>
+
+    <p>
+        Rolename: @Html.DropDownList("Rolename", (IEnumerable<SelectListItem>)ViewBag.Roles,
+                 "Select rolename...", new { @class = "form-control" })
+        <input type="submit" name="role" value="Save" class="btn btn-primary" />
+    </p>
+}
+

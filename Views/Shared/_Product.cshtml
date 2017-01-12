@@ -1,0 +1,54 @@
+﻿@model GiveOnline.Models.PostViewModel
+
+@foreach (var productItem in Model.Products)
+{
+    <div class="modal fade" id="product_@productItem.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@productItem.Title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @foreach (var VariantItem in productItem.Variants)
+                        {
+                            <img src="@VariantItem.ImageUrl" class="img-responsive" alt="">
+
+                            <div class="caption">
+                                <h4 class="pull-right">$@productItem.Price</h4>
+                                <h4>
+                                    <a href="/Home/Details/@productItem.Id">@productItem.Title</a>
+                                </h4>
+                                <p>@productItem.Content</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-6 text-left">
+                        <form action="/Cart/AddToCart" method="post" id="index">
+                            <input type="hidden" name="productId" value="@productItem.Id" />
+
+                            <button type="submit">go</button>
+
+                            <select name="quantity">
+                                @foreach (var VariantItem in productItem.Variants)
+                                {
+                                    for (int i = 0; i < VariantItem.Stock; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            </select>
+                        </form>
+
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <button style="margin-left:0px" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

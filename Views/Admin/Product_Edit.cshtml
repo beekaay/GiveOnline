@@ -1,0 +1,160 @@
+﻿@model GiveOnline.Models.AdminEditViewModel
+@{
+    ViewBag.Title = "Product_Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Product_Edit</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form action="/Admin/Product_Edit/@Model.Product.Id" method="post" enctype="multipart/form-data" id="productEdit">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="Title" id="title" value="@Model.Product.Title" />
+                </div>
+
+                <div class="form-group">
+                    <label for="discription">Discription</label>
+                    <textarea id="discription" class="form-control" name="Discription">@Model.Product.Content</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" class="form-control" name="categoryId">
+
+                        @foreach (var categoryItem in Model.Categories)
+                        {
+                            if (categoryItem.Id == Model.Product.Category.Id)
+                            {
+                                <option selected value="@Model.Product.Category.Id">@Model.Product.Category.Title</option>
+                            }
+                            else
+                            {
+                                <option value="@categoryItem.Id">@categoryItem.Title</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="Price" placeholder="@Model.Product.Price" value="@Model.Product.Price" />
+                </div>
+                <button type="submit">Go</button>
+            </div>
+
+
+
+            <div class="col-xs-6">
+                @foreach (var item in Model.Product.Variants)
+            {
+                    <div class="bs-example" data-example-id="collapse-accordion">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Stock
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="Stock" id="stock" value="@item.Stock" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseTwo" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseTwo">
+                                            Image
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" name="imageURL" id="imageURL" value="@item.ImageUrl" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseThree" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseThree">
+                                            Color
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <select id="color" class="form-control" name="colorId">
+                                                @foreach (var itemColor in Model.Color)
+                                                {
+                                                    if (itemColor.Id == item.Colors.Id)
+                                                    {
+                                                        <option selected value="@item.Colors.Id">@item.Colors.Title</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@itemColor.Id">@itemColor.Title</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseFour" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseFour">
+                                            Size
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <select id="size" class="form-control" name="sizeId">
+                                                @foreach (var itemSize in Model.Size)
+                                                {
+                                                    if (itemSize.Id == item.Sizes.Id)
+                                                    {
+                                                        <option selected value="@item.Sizes.Id">@item.Sizes.Title</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@itemSize.Id">@itemSize.Title</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="variantId" value="@item.Id" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <input type="hidden" name="Id" value="@Model.Product.Id" />
+        </form>
+    </div>
+</div>
+

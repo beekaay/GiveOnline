@@ -1,0 +1,16 @@
+﻿@model IEnumerable<GiveOnline.Models.Category>
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("All", "Shop", "Home")</li>
+                @foreach (var item in Model)
+                {
+                    <li> @Html.ActionLink(item.Title, "Browse", new { category = item.Title }) </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

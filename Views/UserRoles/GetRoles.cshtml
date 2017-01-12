@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "GetRoles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        Username: @Html.DropDownList("Username", (IEnumerable<SelectListItem>)ViewBag.Users,
+                 "Select user...", new { @class = "form-control" })
+        <input type="submit" name="role" value="Get role for this user" class="btn btn-primary" />
+    </p>
+}
+
+@if (ViewBag.RolesForThisUser != null)
+{
+    <div>
+        <h3>
+            Roles for this user:
+        </h3>
+        <ol>
+            @foreach (var item in ViewBag.RolesForThisUser)
+            {
+                <li>@item</li>
+            }
+        </ol>
+    </div>
+}
+

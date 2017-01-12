@@ -1,0 +1,41 @@
+﻿@model List<GiveOnline.Models.DonateOnline>
+
+@foreach (var donateItem in Model)
+{
+    <div class="modal fade" id="@donateItem.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form action="/" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">@donateItem.Title</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            @if (DateTime.Now < donateItem.IsActive)
+                            {
+                                <div class="col-md-12">
+                                    <p>@donateItem.Content</p>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <p>
+                                        Price: <input class="form-group" type="number" name="donate" placeholder="@donateItem.Price" value="" min="@donateItem.Price" />
+                                    </p>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Donate</button>
+                        <button style="margin-left:0px" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+}

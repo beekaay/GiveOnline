@@ -1,0 +1,48 @@
+﻿@model GiveOnline.Models.EventViewModel
+
+@foreach (var eventItem in Model.Events)
+{
+<div class="modal fade" id="event_@eventItem.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@eventItem.Title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    @if (eventItem.StartDate.ToLongDateString() == eventItem.EndDate.ToLongDateString())
+                    {
+                        <div class="col-md-6">Date: @eventItem.StartDate.ToLongDateString()</div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6">Date: @eventItem.StartDate.ToLongDateString() - @eventItem.EndDate.ToLongDateString() </div>
+                    }
+                    <div class="col-md-6">From: @eventItem.StartDate.ToLongTimeString() - @eventItem.EndDate.ToLongTimeString()</div>
+
+                    <div class="col-md-12"><h4>@eventItem.Location</h4><p>@eventItem.Content</p></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 text-left">
+                    @if (eventItem.Stories.Any())
+                    {
+                        foreach (var eventStory in eventItem.Stories.OrderByDescending(m => m.CreateDate).Take(1))
+                        {
+                            <p>
+                                Latest story: @eventStory.Title
+                            </p>
+                                        <a href="/Home/Story/@eventStory.Id">Read More</a>
+                        }
+                    }
+                </div>
+                <div class="col-md-6 pull-right">
+                    <button style="margin-left:0px" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

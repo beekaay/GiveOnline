@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="container body-content">
+            <div class="row">
+                <div class="col-md-6 mobilenav">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/"><img src="/Content/Images/LOGO.png" /></a>
+                    </div>
+                </div>
+                <div class="col-md-6 pull-right">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+
+                                <form role="form" action="/Home/searchword" method="post">
+                                    <div class="searchform">
+                                        <input class="searchBar" type="text" name="searchword" value="" placeholder="Search..." />
+                                        <button type="submit"><i class="searchIcon fa fa-search fa-lg"></i></button>
+                                        <img class="searchBarImage" src="/Content/Images/SEARCH.png" />
+                                    </div>                                   
+                                </form>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 pull-right">
+                    <div class="navbar-collapse collapse">
+                        @*@Html.Partial("_LoginPartial")*@
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
+                            <li>@Html.ActionLink("GIVEonline", "GiveOnline", "Home")</li>
+                            <li>@Html.ActionLink("EVENTS", "Events", "Home")</li>
+                            <li>@Html.ActionLink("SHOP", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                                }
+                            }
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Member"))
+                                {
+                                    <li>@Html.ActionLink("Cart", "Index", "Cart")</li>
+                                }
+                            }
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+
+    <hr />
+    <div class="footer">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="footerText footerNewsletter">SIGN UP TO NEWSLETTER</h4>
+
+                        <button type="button" class="btn btn-primary footerwidth" data-toggle="modal" data-target="#myModal">EMAIL SIGNUP</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Newsletter signup:</h4>
+                                    </div>
+                                    <form action="/Home/NewsReceiver_Create" method="post" id="newsReceiverCreate">
+
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input style="max-width:100%" type="email" class="form-control" name="email" id="email" required value="" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                                            <button type="button" style="margin-left:0px" class="btn btn-default" data-dismiss="modal">Close</button>                                           
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="footerText">NEXT EVENT</h4>
+                        @Html.Action("_NextEvent", "Home")
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="footerText">CONNECT WITH US</h4>
+                        <div class="col-md-12">
+                            <a href="#">
+                                <i>
+                                    <img class="iconPadding" src="~/Content/Icons/facebook.png" />
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i>
+                                    <img class="iconPadding" src="~/Content/Icons/twitter.png" />
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i>
+                                    <img class="iconPadding" src="~/Content/Icons/youtube.png" />
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i>
+                                    <img class="iconPadding" src="~/Content/Icons/paypal.png" />
+                                </i>
+                            </a>
+                            <a href="#">
+                                <i>
+                                    <img class="iconPadding" src="~/Content/Icons/email.png" />
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr />
+                <p id="cpyright">&copy; @DateTime.Now.Year Mercandice Online. All rights reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-simple-pagination-plugin.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script type="text/javascript">
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })</script>

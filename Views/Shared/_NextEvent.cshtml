@@ -1,0 +1,7 @@
+﻿@model List<GiveOnline.Models.Event>
+
+@foreach (var eventItem in Model.Take(1))
+{
+    <p class="footerTextLarge">@eventItem.StartDate.ToLongDateString()</p>
+    <p class="footerTextSmall">@eventItem.Title</p>
+}

@@ -1,0 +1,56 @@
+﻿@model List<GiveOnline.Models.About>
+@{
+    ViewBag.Title = "About_Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table">
+    <thead class="thead-inverse">
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Content</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    @foreach (var aboutItem in Model)
+    {
+        <tr>
+            <td>@aboutItem.Id</td>
+            <td>@aboutItem.Title</td>
+            <td>@aboutItem.Content</td>
+            <td>
+                <a href="/Admin/About_Edit/@aboutItem.Id">
+                    <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                </a>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#@aboutItem.Id">
+                    Delete
+                </button>
+
+                <div class="modal fade" id="@aboutItem.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this?</p>
+                                <p>there are no take backs!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="/Admin/About_Delete/@aboutItem.Id" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    }
+
+
+</table>

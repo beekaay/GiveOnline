@@ -1,0 +1,120 @@
+﻿@model GiveOnline.Models.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<!--Carousel-->
+<div class="container-fluid body-fluid">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+
+        <div class="carousel-inner" role="listbox">
+            <!-- Wrapper for slides -->
+
+
+
+            @foreach (var item in Model.Carousels)
+            {
+                if (item.IsActive)
+                {
+                    <div class="item active">
+                        <img class="carouselImage img-responsive" src="@item.ImageUrl">
+                        <div class="carousel-caption captionbox">
+                            <h2>
+                                @item.Title
+                            </h2>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        <img class="carouselImage img-responsive" src="@item.ImageUrl">
+                        <div class="carousel-caption captionbox">
+                            <h2>
+                                @item.Title
+                            </h2>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<div class="container body-content">
+    <div class="row">        
+        @foreach (var menuboxItem in Model.MenuBoxs)
+        {
+            <div class="col-xs-4">
+                <div class="menuPosition">
+                    <img class="img-responsive menuBoxesImage" src="@menuboxItem.ImageUrl" />
+                    <div class="menuBoxes">
+                        <h1 class="menuBoxesHeadline">@menuboxItem.Headline</h1>
+                        <a class="menuBoxesLink" href="/Home/Story">
+                            <h5 class="menuBoxesText" style="background-color:@menuboxItem.Color">@menuboxItem.Title <i class="fa fa-arrow-circle-o-right fa-lg"></i></h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="events">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <h1>UPCOMING EVENTS</h1>
+                    <hr />
+                </div>
+
+                @foreach (var eventItem in Model.Events.OrderBy(m => m.StartDate).Take(3))
+                {
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                            <div class="eventDateIndex"><h5>@eventItem.StartDate.ToLongDateString().</h5> </div>
+                        </div>
+
+                        <div class="col-md-push-1 col-md-7">
+                            <h4 class="">@eventItem.Title</h4>
+                            <p>@eventItem.StartDate.DayOfWeek @eventItem.StartDate.ToLongTimeString()</p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <button style="margin-top:15px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#event_@eventItem.Id">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+                    @Html.Action("_EventModal")
+                }
+            </div>
+
+
+            <div class="col-md-6">
+                @foreach (var aboutItem in Model.Abouts.OrderBy(m => m.Id).Take(1))
+                {
+                    <h2 class="headline">@aboutItem.Title</h2>
+
+                    <p class="bodytext">@aboutItem.Content.Cut()</p>
+
+                    <a href="/Home/About"><h4 class="aboutLink">READ MORE >> </h4> </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
